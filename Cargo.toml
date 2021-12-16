@@ -1,0 +1,30 @@
+[package]
+name = "engine_workspace"
+version = "0.1.0"
+edition = "2018"
+authors = ["Stephen Akinyemi <appcypher@outlook.com>"]
+description = "A server for managing workspaces in a Gigamono serverless environment"
+readme = "README.md"
+repository = "https://github.com/gigamono/engine_workspace"
+keywords = ["no-code", "capabilities", "runtime", "serverless", "deno"]
+categories = ["development-tools", "web-programming"]
+documentation = "https://github.com/gigamono/engine_workspace"
+homepage = "https://gigamono.com"
+license-file = "LICENSE"
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+utilities = { path = "../utilities" }
+tokio = { version = "1", features = ["full"] }
+env_logger = "0.9.0"
+log = "0.4.14"
+futures-util = "0.3.17"
+hyper-staticfile = "0.8.0"
+
+[lib]
+name = "engine_workspace"
+path = "lib/lib.rs"
+
+[[bin]]
+name = "server"
+path = "bin/workspace_server.rs"
