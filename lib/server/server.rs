@@ -2,11 +2,11 @@
 
 use crate::Router;
 use futures_util::FutureExt;
-use hyper_staticfile::Static;
 use log::{error, info};
 use std::convert::Infallible;
 use std::future::Future;
 use std::{net::SocketAddr, panic::AssertUnwindSafe, sync::Arc};
+use utilities::ip;
 use utilities::{
     http::{
         self,
@@ -31,8 +31,7 @@ impl WorkspaceServer {
         env_logger::init();
 
         // Get socket address.
-        let socket_address = &self.setup.config.engines.workspace.socket_address;
-        let addr: SocketAddr = socket_address.parse()?;
+        let addr = ip::parse_socket_address(&self.setup.config.engines.workspace.socket_address)?;
 
         info!(r#"Socket address = "{}""#, addr);
 
