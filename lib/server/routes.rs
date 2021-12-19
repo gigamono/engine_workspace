@@ -2,7 +2,7 @@
 
 use std::sync::Arc;
 use utilities::{
-    http::{Body, Request, Response},
+    hyper::{Body, Request, Response},
     result::HandlerResult,
     setup::CommonSetup,
 };

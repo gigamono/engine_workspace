@@ -5,11 +5,11 @@ use futures_util::FutureExt;
 use log::{error, info};
 use std::convert::Infallible;
 use std::future::Future;
-use std::{net::SocketAddr, panic::AssertUnwindSafe, sync::Arc};
+use std::{panic::AssertUnwindSafe, sync::Arc};
 use utilities::ip;
 use utilities::{
-    http::{
-        self,
+    http,
+    hyper::{
         service::{make_service_fn, service_fn},
         Body, Request, Response, Server,
     },

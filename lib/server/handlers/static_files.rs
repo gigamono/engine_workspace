@@ -3,7 +3,7 @@
 use hyper_staticfile::Static;
 use utilities::{
     errors::{self, HandlerError, HandlerErrorMessage},
-    http::{Body, Request, Response},
+    hyper::{Body, Request, Response},
     result::HandlerResult,
 };
 
