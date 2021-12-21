@@ -16,7 +16,15 @@ impl Router {
         request: Request<Body>,
         _setup: Arc<CommonSetup>,
     ) -> HandlerResult<Response<Body>> {
+        let path = request.uri().path();
+
         // Routing.
-        StaticFilesHandler::handle(request, "../web_ui/public/").await
+        if path == "/v1/workspaces" || path.starts_with("/v1/workspaces/") {
+            // Route for workspace management. e.g., GET https://internal.gigamono.com/v1/workspaces/
+            todo!();
+        } else {
+            // For everything else, use the the static file server.
+            StaticFilesHandler::handle(request, "../web_ui/public/").await
+        }
     }
 }
