@@ -14,9 +14,10 @@ pub struct Router;
 impl Router {
     pub async fn route(
         request: Request<Body>,
-        _setup: Arc<CommonSetup>,
+        setup: Arc<CommonSetup>,
     ) -> HandlerResult<Response<Body>> {
         let path = request.uri().path();
+        let config = &setup.config;
 
         // Routing.
         if path == "/v1/workspaces" || path.starts_with("/v1/workspaces/") {
@@ -24,7 +25,7 @@ impl Router {
             todo!();
         } else {
             // For everything else, use the the static file server.
-            StaticFilesHandler::handle(request, "../web_ui/public/").await
+            StaticFilesHandler::handle(request, &config.web_ui.dir).await
         }
     }
 }
