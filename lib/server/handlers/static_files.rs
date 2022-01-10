@@ -45,12 +45,7 @@ impl StaticFilesHandler {
                 code: StatusCode::BAD_REQUEST,
                 src: errors::new_error(format!(r#"permission denied for "{:?}""#, path)),
             }),
-            ResolveResult::IsDirectory => Err(HandlerError::Client {
-                ctx: HandlerErrorMessage::BadRequest,
-                code: StatusCode::BAD_REQUEST,
-                src: errors::new_error(format!(r#"resource is a directory "{:?}""#, path)),
-            }),
-            ResolveResult::Found(_, _, _) => Ok(hyper_staticfile::ResponseBuilder::new()
+            _ => Ok(hyper_staticfile::ResponseBuilder::new()
                 .request(&request)
                 .build(result)
                 .unwrap()),
