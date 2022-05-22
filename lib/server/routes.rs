@@ -25,7 +25,7 @@ impl Router {
             todo!();
         } else {
             // For everything else, use the the static file server.
-            StaticFilesHandler::handle(request, &config.web_ui.dir).await
+            StaticFilesHandler::handle(request, &config.ui.root).await
         }
     }
 }
